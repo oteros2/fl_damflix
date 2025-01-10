@@ -6,9 +6,20 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Damflix'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.search),
+            onPressed: () {
+              
+            },
+          ),
+        ],
+      ),
       body: Container(
         child: const Center(
-          child: Text('Details Screen'),
+          child: Text('Home Screen'),
         ),
       ),
     );
