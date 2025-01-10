@@ -1,3 +1,4 @@
+import 'package:fl_damflix/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -17,10 +18,10 @@ class HomeScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: Container(
-        child: const Center(
-          child: Text('Home Screen'),
-        ),
+      body: const Column(
+        children: [
+          CardSwiper(),
+        ],
       ),
     );
   }
