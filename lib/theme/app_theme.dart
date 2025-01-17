@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 class AppTheme {
   static const Color primary = Colors.indigo;
-  static final ThemeData lightTheme = ThemeData.light().copyWith(
+
+  static final ThemeData ligthTheme = ThemeData.light().copyWith(
     //Color primario
     primaryColor: primary,
 
@@ -11,12 +12,8 @@ class AppTheme {
       backgroundColor: primary,
       titleTextStyle: TextStyle(
         color: Colors.white,
-        fontSize: 20,
-        fontWeight: FontWeight.bold,
-      ),
-      iconTheme: IconThemeData(
-        color: Colors.white,
-      ),
-    ),
-  );
+        fontSize: 24,
+      )
+    )
+  ); 
 }
