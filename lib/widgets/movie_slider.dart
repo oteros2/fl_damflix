@@ -11,7 +11,7 @@ class MovieSlider extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Padding(
+          const Padding(
             padding:EdgeInsets.all(15),
             child: Text('Favoritas', style: TextStyle( fontSize: 25, fontWeight: FontWeight.bold),)
           ),
@@ -21,7 +21,7 @@ class MovieSlider extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               itemCount: 10,
               itemBuilder: (context, index){
-                return _MoviePoster();
+                return const _MoviePoster();
               }
             ),
           )
@@ -48,7 +48,7 @@ class _MoviePoster extends StatelessWidget {
             onTap: () => Navigator.pushNamed(context, 'details', arguments: 'movie-instance'),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(20),
-              child: FadeInImage(
+              child: const FadeInImage(
                 placeholder: AssetImage('assets/no-image.jpg'), 
                 image: NetworkImage('https://i.pinimg.com/736x/bb/29/49/bb2949699f2fb63a09a1dc234989657a.jpg'),
                 width: 130,
@@ -57,9 +57,9 @@ class _MoviePoster extends StatelessWidget {
                 ),
             ),
           ),
-          SizedBox( height: 8),
+          const SizedBox( height: 8),
           // Titulo
-          Text('Star Wars: Episodio IV Una nueva esperanza',
+          const Text('Star Wars: Episodio IV Una nueva esperanza',
           maxLines: 2,
           overflow: TextOverflow.ellipsis,
           textAlign: TextAlign.center,

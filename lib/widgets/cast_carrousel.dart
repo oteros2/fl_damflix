@@ -12,7 +12,7 @@ class CastCarrousel extends StatelessWidget {
         itemCount: 10,
         scrollDirection: Axis.horizontal,
         itemBuilder: (BuildContext context, int index){
-          return _CastCard();
+          return const _CastCard();
         }
       ),
     );
@@ -25,14 +25,14 @@ class _CastCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 10),
+      margin: const EdgeInsets.symmetric(horizontal: 10),
       width: 110,
       height: 110,
       child: Column(
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(20),
-            child: FadeInImage(
+            child: const FadeInImage(
               placeholder: AssetImage('assets/no-image.jpg'), 
               image: NetworkImage('https://static.wikia.nocookie.net/esstarwars/images/2/29/Harrisonford.jpg'),
               height: 120,
@@ -41,9 +41,9 @@ class _CastCard extends StatelessWidget {
             ),
           ),
 
-          SizedBox( height: 10,),
+          const SizedBox( height: 10,),
 
-          Text('actor.nombre Harrison Ford',
+          const Text('actor.nombre Harrison Ford',
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
             textAlign: TextAlign.center,

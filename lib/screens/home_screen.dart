@@ -8,17 +8,17 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Damflix'),
+        title: const Text('Damflix'),
         actions: [
           IconButton(
             onPressed: () {}, 
-            icon: Icon(
+            icon: const Icon(
               Icons.search_outlined,
               color: Colors.white,)
           )
         ],
       ),
-      body: SingleChildScrollView(
+      body: const SingleChildScrollView(
         child: Column(
           children: [
             CardSwiper(),

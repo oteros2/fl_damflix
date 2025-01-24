@@ -2,7 +2,6 @@ import 'package:fl_damflix/providers/movies_provider.dart';
 import 'package:fl_damflix/screens/screens.dart';
 import 'package:flutter/material.dart';
 import 'package:fl_damflix/theme/app_theme.dart';
-import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -10,7 +9,7 @@ void main() {
   //WidgetsFlutterBinding.ensureInitialized();
   //SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive); // Modo inmersivo
 
-  runApp(AppState());
+  runApp(const AppState());
 }
 
 class AppState extends StatelessWidget {
@@ -22,7 +21,7 @@ class AppState extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (context) => MoviesProvider(), lazy: false)
       ],
-      child: MyApp(),
+      child: const MyApp(),
     );
   }
 }
