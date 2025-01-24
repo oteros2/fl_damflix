@@ -1,7 +1,10 @@
+import 'package:fl_damflix/models/models.dart';
 import 'package:flutter/material.dart';
 
 class MovieSlider extends StatelessWidget {
-  const MovieSlider({super.key});
+  const MovieSlider({super.key, required this.popularMovies});
+
+  final List<PopularResponse> popularMovies;
 
   @override
   Widget build(BuildContext context) {
