@@ -10,11 +10,10 @@ class MoviesProvider extends ChangeNotifier{
   final String _language = 'es-ES';
 
   List<Result> onDisplayMovies = [];
-  List<PopularResult> popularMovies = [];
+  List<Result2> popularMovies = [];
 
   MoviesProvider(){
     print('MoviesProvider esta inicializado');
-
     this.getOnDisplayMovies();
     this.getPopularMovies();
   }

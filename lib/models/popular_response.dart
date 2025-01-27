@@ -2,7 +2,7 @@ import 'dart:convert';
 
 class PopularResponse {
     int page;
-    List<PopularResult> results;
+    List<Result2> results;
     int totalPages;
     int totalResults;
 
@@ -19,7 +19,7 @@ class PopularResponse {
 
     factory PopularResponse.fromMap(Map<String, dynamic> json) => PopularResponse(
         page: json["page"],
-        results: List<PopularResult>.from(json["results"].map((x) => PopularResult.fromMap(x))),
+        results: List<Result2>.from(json["results"].map((x) => Result2.fromMap(x))),
         totalPages: json["total_pages"],
         totalResults: json["total_results"],
     );
@@ -32,7 +32,7 @@ class PopularResponse {
     };
 }
 
-class PopularResult {
+class Result2 {
     bool adult;
     String backdropPath;
     List<int> genreIds;
@@ -48,13 +48,13 @@ class PopularResult {
     double voteAverage;
     int voteCount;
 
-    get fullPosterImg {
+     get fullPosterImg {
       if (this.posterPath != null) {
         return 'https://image.tmdb.org/t/p/w500${this.posterPath}';
       } return 'https://www.creativefabrica.com/wp-content/uploads/2022/11/26/404-error-not-found-logo-Graphics-48584243-1.jpg';
     }
 
-    PopularResult({
+    Result2({
         required this.adult,
         required this.backdropPath,
         required this.genreIds,
@@ -71,11 +71,11 @@ class PopularResult {
         required this.voteCount,
     });
 
-    factory PopularResult.fromJson(String str) => PopularResult.fromMap(json.decode(str));
+    factory Result2.fromJson(String str) => Result2.fromMap(json.decode(str));
 
     String toJson() => json.encode(toMap());
 
-    factory PopularResult.fromMap(Map<String, dynamic> json) => PopularResult(
+    factory Result2.fromMap(Map<String, dynamic> json) => Result2(
         adult: json["adult"],
         backdropPath: json["backdrop_path"],
         genreIds: List<int>.from(json["genre_ids"].map((x) => x)),

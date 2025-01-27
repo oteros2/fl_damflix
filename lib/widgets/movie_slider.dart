@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class MovieSlider extends StatelessWidget {
   const MovieSlider({super.key, required this.popularMovies});
 
-  final List<PopularResponse> popularMovies;
+  final List<Result2> popularMovies;
 
   @override
   Widget build(BuildContext context) {
@@ -22,13 +22,14 @@ class MovieSlider extends StatelessWidget {
           Expanded(
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: 10,
+              itemCount: popularMovies.length,
               itemBuilder: (context, index){
-                return const _MoviePoster();
+                final movie = popularMovies[index];
+                print(movie);
+                return _MoviePoster(movie: movie);
               }
             ),
           )
-          
         ],
       ),
     );
@@ -36,7 +37,9 @@ class MovieSlider extends StatelessWidget {
 }
 
 class _MoviePoster extends StatelessWidget {
-  const _MoviePoster({super.key});
+  final Result2 movie;
+
+  const _MoviePoster({super.key, required this.movie});
 
   @override
   Widget build(BuildContext context) {
@@ -51,9 +54,9 @@ class _MoviePoster extends StatelessWidget {
             onTap: () => Navigator.pushNamed(context, 'details', arguments: 'movie-instance'),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(20),
-              child: const FadeInImage(
-                placeholder: AssetImage('assets/no-image.jpg'), 
-                image: NetworkImage('https://i.pinimg.com/736x/bb/29/49/bb2949699f2fb63a09a1dc234989657a.jpg'),
+              child: FadeInImage(
+                placeholder: const AssetImage('assets/no-image.jpg'), 
+                image: NetworkImage(movie.fullPosterImg),
                 width: 130,
                 height: 190,
                 fit: BoxFit.cover
@@ -62,7 +65,7 @@ class _MoviePoster extends StatelessWidget {
           ),
           const SizedBox( height: 8),
           // Titulo
-          const Text('Star Wars: Episodio IV Una nueva esperanza',
+          Text(movie.title,
           maxLines: 2,
           overflow: TextOverflow.ellipsis,
           textAlign: TextAlign.center,
