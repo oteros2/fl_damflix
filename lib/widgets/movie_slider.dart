@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class MovieSlider extends StatelessWidget {
   const MovieSlider({super.key, required this.popularMovies});
 
-  final List<Result2> popularMovies;
+  final List<Result> popularMovies;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +37,7 @@ class MovieSlider extends StatelessWidget {
 }
 
 class _MoviePoster extends StatelessWidget {
-  final Result2 movie;
+  final Result movie;
 
   const _MoviePoster({super.key, required this.movie});
 
@@ -51,7 +51,7 @@ class _MoviePoster extends StatelessWidget {
         children: [
           // Cartel
           GestureDetector(
-            onTap: () => Navigator.pushNamed(context, 'details', arguments: 'movie-instance'),
+            onTap: () => Navigator.pushNamed(context, 'details', arguments: movie),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(20),
               child: FadeInImage(

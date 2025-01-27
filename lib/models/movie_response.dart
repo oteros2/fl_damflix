@@ -1,13 +1,13 @@
 import 'dart:convert';
 
-class NowPlayingResponse {
+class MovieResponse {
     Dates dates;
     int page;
     List<Result> results;
     int totalPages;
     int totalResults;
 
-    NowPlayingResponse({
+    MovieResponse({
         required this.dates,
         required this.page,
         required this.results,
@@ -15,11 +15,11 @@ class NowPlayingResponse {
         required this.totalResults,
     });
 
-    factory NowPlayingResponse.fromJson(String str) => NowPlayingResponse.fromMap(json.decode(str));
+    factory MovieResponse.fromJson(String str) => MovieResponse.fromMap(json.decode(str));
 
     String toJson() => json.encode(toMap());
 
-    factory NowPlayingResponse.fromMap(Map<String, dynamic> json) => NowPlayingResponse(
+    factory MovieResponse.fromMap(Map<String, dynamic> json) => MovieResponse(
         dates: Dates.fromMap(json["dates"]),
         page: json["page"],
         results: List<Result>.from(json["results"].map((x) => Result.fromMap(x))),
@@ -65,7 +65,6 @@ class Result {
     String backdropPath;
     List<int> genreIds;
     int id;
-    OriginalLanguage originalLanguage;
     String originalTitle;
     String overview;
     double popularity;
@@ -82,12 +81,17 @@ class Result {
       } return 'https://www.creativefabrica.com/wp-content/uploads/2022/11/26/404-error-not-found-logo-Graphics-48584243-1.jpg';
     }
 
+    get backDropImg {
+      if (this.backdropPath != null) {
+        return 'https://image.tmdb.org/t/p/w500${this.backdropPath}';
+      } return 'https://www.creativefabrica.com/wp-content/uploads/2022/11/26/404-error-not-found-logo-Graphics-48584243-1.jpg';
+    }
+
     Result({
         required this.adult,
         required this.backdropPath,
         required this.genreIds,
         required this.id,
-        required this.originalLanguage,
         required this.originalTitle,
         required this.overview,
         required this.popularity,
@@ -108,7 +112,6 @@ class Result {
         backdropPath: json["backdrop_path"],
         genreIds: List<int>.from(json["genre_ids"].map((x) => x)),
         id: json["id"],
-        originalLanguage: originalLanguageValues.map[json["original_language"]]!,
         originalTitle: json["original_title"],
         overview: json["overview"],
         popularity: json["popularity"]?.toDouble(),
@@ -125,7 +128,6 @@ class Result {
         "backdrop_path": backdropPath,
         "genre_ids": List<dynamic>.from(genreIds.map((x) => x)),
         "id": id,
-        "original_language": originalLanguageValues.reverse[originalLanguage],
         "original_title": originalTitle,
         "overview": overview,
         "popularity": popularity,
