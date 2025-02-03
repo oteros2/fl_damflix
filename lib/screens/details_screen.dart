@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:fl_damflix/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
@@ -10,6 +12,7 @@ class DetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
 
   final Result movie = ModalRoute.of(context)!.settings.arguments as Result;
+  final int movieId = movie.id;
 
     return Scaffold(
       body: CustomScrollView(
@@ -19,8 +22,10 @@ class DetailsScreen extends StatelessWidget {
             delegate: SliverChildListDelegate([
               //Text('Prueba numero 1'),
               _InfoPelicula(movie: movie),
+              const SizedBox(height: 20),
               _Overview(movie: movie),
-              const CastCarrousel(),
+              const SizedBox(height: 20),
+              CastCarrousel(movieId: movieId),
             ]),
           )
         ],
@@ -45,9 +50,12 @@ class _CustomAppBar extends StatelessWidget {
         titlePadding: const EdgeInsets.all(0),
         title: Container(
           width: double.infinity,
-          color: Colors.black54,
+          color: const Color.fromARGB(136, 107, 77, 77),
           alignment: Alignment.bottomCenter,
-          child: Text(movie.title, style: const TextStyle(color: Colors.white),)
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(movie.title, style: const TextStyle(color: Colors.white),),
+          )
         ),
         background: FadeInImage(
           placeholder: const AssetImage('assets/loading.gif'), 
@@ -81,20 +89,24 @@ class _InfoPelicula extends StatelessWidget {
 
           const SizedBox( width: 20,),
 
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(movie.originalTitle, style: Theme.of(context).textTheme.titleLarge, overflow: TextOverflow.ellipsis, maxLines: 2,),
-              Text(movie.releaseDate.toString(), style: Theme.of(context).textTheme.titleSmall,),
-              Text(movie.voteAverage.toString(), style: Theme.of(context).textTheme.titleSmall,),
-              
-              Row(
-                children: [
-                  const Icon(Icons.star, size: 25, color: Colors.yellow),
-                  Text(movie.voteAverage.toString(), style: Theme.of(context).textTheme.titleSmall,)
-                ],
-              )
-            ],
+          Container(
+            width: 180,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('Título original:', style: Theme.of(context).textTheme.titleMedium,),
+                Text(movie.originalTitle, style: Theme.of(context).textTheme.titleMedium,),
+                Text('Fecha de lanzamiento:', style: Theme.of(context).textTheme.titleSmall,),
+                Text(movie.releaseDate.toString().substring(0,10), style: Theme.of(context).textTheme.titleSmall,),
+                //Text(movie.id.toStringAsFixed(1), style: Theme.of(context).textTheme.titleSmall,),
+                Row(
+                  children: [
+                    const Icon(Icons.star, size: 25, color: Colors.yellow),
+                    Text(movie.voteAverage.toStringAsFixed(1), style: Theme.of(context).textTheme.titleSmall,)
+                  ],
+                )
+              ],
+            ),
           )
         ],
       ),

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:fl_damflix/models/credit_response.dart';
 import 'package:fl_damflix/models/popular_response.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -11,11 +12,12 @@ class MoviesProvider extends ChangeNotifier {
 
   List<Result> onDisplayMovies = [];
   List<Result> popularMovies = [];
+  List<Cast> casting = [];
 
   MoviesProvider() {
     print('MoviesProvider esta inicializado');
-    this.getOnDisplayMovies();
-    this.getPopularMovies();
+    getOnDisplayMovies();
+    getPopularMovies();
   }
 
   getOnDisplayMovies() async {
@@ -40,6 +42,16 @@ class MoviesProvider extends ChangeNotifier {
 
     popularMovies = [...popularMovies, ...popularResponse.results];
     // popularMovies = popularResponse.results;
+    notifyListeners();
+  }
+
+  getMovieCast(int movieId) async {
+    var url = Uri.https(_baseUrl, '3/movie/$movieId/credits',
+        {'api_key': _apiKey, 'language': _language});
+
+    var response = await http.get(url);
+    final creditResponse = CreditResponse.fromJson(response.body);
+    casting = creditResponse.cast;
     notifyListeners();
   }
 }
